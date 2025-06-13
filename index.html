@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supercombo - Vend y Gana</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-container {
+            width: 100%;
+            height: 90vh;
+            border: none;
+            margin-bottom: 20px;
+        }
+        .btn-regresar {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 12px 20px;
+            background-color: #ff6600;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .btn-regresar:hover {
+            background-color: #e65c00;
+        }
+
+        /* Estilos para el modal de películas */
+        .modal-peliculas {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-contenido {
+            width: 80%;
+            max-width: 600px;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+            border: 3px solid #ffcc00;
+            animation: brillo 2s infinite alternate;
+        }
+        @keyframes brillo {
+            from { box-shadow: 0 0 15px rgba(255, 215, 0, 0.6); }
+            to { box-shadow: 0 0 30px rgba(255, 215, 0, 0.9); }
+        }
+        .modal-titulo {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #ffcc00;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .modal-mensaje {
+            font-size: 22px;
+            margin-bottom: 30px;
+            font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 15px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        .cerrar-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #ffcc00;
+            font-weight: bold;
+        }
+        .btn-aceptar {
+            padding: 12px 30px;
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        .btn-aceptar:hover {
+            background-color: #ff3300;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <iframe src="https://vendeygana.forms.app/supercombo" class="form-container" frameborder="0"></iframe>
+        <button class="btn-regresar" onclick="window.location.href='https://www.vendeygana.net/user/'">REGRESAR</button>
+    </div>
+
+    <!-- Ventana emergente de películas -->
+    <div class="modal-peliculas" id="modalPeliculas">
+        <div class="modal-contenido">
+            <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
+            <h2 class="modal-titulo">¡Gran Oportunidad!</h2>
+            <p class="modal-mensaje">HOY ES EL DÍA DE VENDER Y GANAR MÁS CON LAS SUPER OFERTAS EN COMBOS</p>
+            <button class="btn-aceptar" onclick="cerrarModal()">¡Entendido!</button>
+        </div>
+    </div>
+
+    <script>
+        // Mostrar el modal al cargar la página
+        window.onload = function() {
+            document.getElementById('modalPeliculas').style.display = 'flex';
+            
+            // Opcional: Evitar que el fondo se desplace cuando el modal está abierto
+            document.body.style.overflow = 'hidden';
+        };
+
+        // Cerrar el modal
+        function cerrarModal() {
+            document.getElementById('modalPeliculas').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Cerrar al presionar ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                cerrarModal();
+            }
+        });
+    </script>
+</body>
+</html>
